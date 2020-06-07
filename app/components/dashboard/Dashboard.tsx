@@ -33,6 +33,15 @@ export default function DashBoard() {
             <Grid item xs={12}>
               <Paper className={classes.paper}>
                 <Link component={RouterLink} to='/processes'>Processes</Link>
+                <Link component={RouterLink} to='/registry'>Registry</Link>
+                <Link component={RouterLink} to='/dlls'>DLLs</Link>
+                <Link component={RouterLink} to='/drivers'>Drivers</Link>
+                <Link component={RouterLink} to='/files'>Files</Link>
+                <Link component={RouterLink} to='/strings'>Strings</Link>
+                <Link component={RouterLink} to='/vads'>VADs</Link>
+                <Link component={RouterLink} to='/services'>Services</Link>
+                <Link component={RouterLink} to='/malfind'>Malfind</Link>
+                <Link component={RouterLink} to='/yara'>Yara</Link>
               </Paper>
             </Grid>
         </Grid>

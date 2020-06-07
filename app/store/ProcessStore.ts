@@ -36,6 +36,13 @@ class ProcessStore extends ExecutionStore {
         const result = await this.execute([ 'windows.pslist' ]);
         if (result) this.all = result.json;
     }
+
+    async psscan(): Promise<void> {
+        const result = await this.execute([ 'windows.psscan' ]);
+        console.log(result);
+        
+        if (result) this.all = result.json;
+    }
 }
 
 decorate(ProcessStore, {

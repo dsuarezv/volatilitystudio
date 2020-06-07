@@ -9,7 +9,7 @@ export default observer(function ProcessList() {
     const store = useStore().Processes;
 
     useEffect( () => {
-        if (!store.all) store.pslist();
+        if (!store.all) store.psscan();
     }, [store.all]);
 
     if (store.loading) return <CircularProgress />
@@ -19,7 +19,7 @@ export default observer(function ProcessList() {
             <h1>ProcessList</h1>
             <DataTable 
                 data={store.all} 
-                fields={['PID', 'PPID', 'Offset(V)', 'ImageFileName', 'Threads', 'Handles', 'CreateTime', 'ExitTime']} 
+                fields={['PID', 'PPID', 'Offset', 'ImageFileName', 'Threads', 'Handles', 'CreateTime', 'ExitTime']} 
                 keyField='PID'
             />
         </div>
