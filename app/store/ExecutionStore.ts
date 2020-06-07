@@ -1,6 +1,5 @@
 import Store from './Store';
-
-console.log("env", process.env.PYTHONPATH);
+import { observable, decorate } from 'mobx';
 
 // Get this from the config store
 const studioConfig = {
@@ -37,8 +36,29 @@ class ExecutionStore {
 
     _parent: Store;
 
+    loading = false;
+    all?: object;
+    error?: object;
+
     constructor(parent: Store) {
         this._parent = parent;
+    }
+
+    async execute(args: string[]): Promise<ExecutionResult | null> {
+        this.loading = true;
+        this.error = undefined;
+
+        const result = await this.executeVolatility(args);
+        if (!result.json) {
+            this.error = result.error;
+            this.loading = false;
+            return null;
+        }
+        
+        this.all = result.json;
+        this.loading = false;
+
+        return result;
     }
 
     async executeVolatility(args: string[]): Promise<ExecutionResult> {
@@ -103,5 +123,12 @@ class ExecutionStore {
         return PATH_ADDITIONS_WINDOWS.map(p => basePath + SEP + p).join(PATH_SEP) + PATH_SEP;
     }
 }
+
+decorate(ExecutionStore, {
+    loading: observable,
+    all: observable,
+    error: observable
+});
+
 
 export default ExecutionStore;

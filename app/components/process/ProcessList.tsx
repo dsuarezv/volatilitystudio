@@ -9,7 +9,7 @@ export default observer(function ProcessList() {
     const store = useStore().Processes;
 
     useEffect( () => {
-        if (!store.all) store.psscan();
+        if (!store.all) store.pslist();
     }, [store.all]);
 
     if (store.loading) return <CircularProgress />
@@ -21,6 +21,10 @@ export default observer(function ProcessList() {
                 data={store.all} 
                 fields={['PID', 'PPID', 'Offset', 'ImageFileName', 'Threads', 'Handles', 'CreateTime', 'ExitTime']} 
                 keyField='PID'
+                highlightRules={[
+                    { match: p => p.ImageFileName === 'System', style: { fontWeight: 'bold' } }, 
+                    { match: p => p.ImageFileName === 'lsass.exe', style: { backgroundColor: 'pink' } }, 
+                ]}
             />
         </div>
     );

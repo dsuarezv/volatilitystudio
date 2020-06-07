@@ -1,12 +1,12 @@
 import React from 'react';
-import ProcessStore from './ProcessStore';
+import ProcessesStore from './ProcessesStore';
 import ProjectStore from './ProjectStore';
 import ConfigStore from './ConfigStore';
 
 class Store {
     Config = new ConfigStore(this);
     Project = new ProjectStore(this);
-    Processes = new ProcessStore(this);
+    Processes = new ProcessesStore(this);
 }
 
 const storeContext = React.createContext(new Store());

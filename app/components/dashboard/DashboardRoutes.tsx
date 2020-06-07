@@ -5,7 +5,7 @@ import DashBoard from './Dashboard';
 import Dlls from '../dlls/Dlls';
 import Drivers from '../drivers/Drivers';
 import Malfind from '../malfind/Malfind';
-import Services from '../services/Services';
+import ServiceList from '../services/ServiceList';
 import Vads from '../vads/Vads';
 import Strings from '../strings/Strings';
 import Files from '../files/Files';
@@ -17,7 +17,7 @@ export default function DashboardRoutes() {
         <Switch>
             <Route path='/yara' component={Yara} />
             <Route path='/malfind' component={Malfind} />
-            <Route path='/services' component={Services} />
+            <Route path='/services' component={ServiceList} />
             <Route path='/vads' component={Vads} />
             <Route path='/strings' component={Strings} />
             <Route path='/files' component={Files} />
