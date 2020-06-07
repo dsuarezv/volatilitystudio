@@ -24,6 +24,8 @@ function getRowStyle(highlightRules: HighlightRule[] | null, row: object) {
 export default observer(function DataTable({ data, fields, keyField, highlightRules}) {
     if (!data || data.length === 0) return null;
 
+    console.log('Fields:', Object.keys(data[0]));
+
     return (
         <Table>
             <TableHead>

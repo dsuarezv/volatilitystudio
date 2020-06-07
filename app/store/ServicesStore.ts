@@ -8,7 +8,7 @@ class ServicesStore extends ExecutionStore {
         super(parent);
     }
 
-    async pslist(): Promise<void> {
+    async svcscan(): Promise<void> {
         const result = await this.execute([ 'windows.svcscan' ]);
         if (result) this.all = result.json;
     }
