@@ -1,7 +1,9 @@
 import React from 'react';
 import { hot } from 'react-hot-loader/root';
-import Routes from '../Routes';
 import { MemoryRouter as Router } from 'react-router-dom';
+import { Switch, Route } from 'react-router-dom';
+import App from './App';
+import HomePage from './HomePage';
 
 
 type Props = {
@@ -9,7 +11,11 @@ type Props = {
 
 const Root = ({  }: Props) => (
   <Router>
-    <Routes />
+    <App>
+      <Switch>
+        <Route path='/' component={HomePage} />
+      </Switch>
+    </App>
   </Router>
 );
 
