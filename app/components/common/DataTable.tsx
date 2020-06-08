@@ -1,19 +1,20 @@
 import React from 'react';
 import { Table, TableBody, TableHead, TableRow, TableCell } from '@material-ui/core';
 import { observer } from 'mobx-react';
+import { isFunction } from 'util';
 
 interface HighlightRule {
     match: (row: object) => string;
     style: object;
 }
 
-interface CellRenderer {
-    (row: object, fieldName: string, fieldValue: object): string;
-}
+type CellRenderer = (row: object, fieldName: string, fieldValue: object) => string;
 
 interface CellRenderers {
     [key: string]: CellRenderer;
 }
+
+type KeyHandler = (row: object) => string | string;
 
 function getRowStyle(highlightRules: HighlightRule[] | null, row: object) {
     if (!highlightRules) return null;
@@ -38,11 +39,28 @@ function getCellValue(renderers: CellRenderers | null, row: object, fieldName: s
     return row[fieldName];
 }
 
+function getRowKey(row: object, keyField: KeyHandler) {
+    if (isFunction(keyField)) return keyField(row);
 
-export default observer(function DataTable({ data, fields, keyField, highlightRules, renderers}) {
+    return row[keyField];
+}
+
+interface PropTypes {
+    data: Array<any>;
+    fields: Array<string>;
+    keyField: KeyHandler;
+    highlightRules: HighlightRule[] | null;
+    renderers: CellRenderers | null;
+}
+
+
+export default observer(function DataTable({ data, fields, keyField, highlightRules, renderers}: PropTypes) {
     if (!data || data.length === 0) return null;
 
-    console.log('Fields:', Object.keys(data[0]));
+    const dataFields = Object.keys(data[0]);
+    console.log('Fields:', dataFields);
+
+    if (!fields) fields = dataFields;
 
     return (
         <Table size='small'>
@@ -60,7 +78,7 @@ export default observer(function DataTable({ data, fields, keyField, highlightRu
                     const style = getRowStyle(highlightRules, row);
 
                     return (
-                        <TableRow key={row[keyField]} style={style}>
+                        <TableRow key={getRowKey(row, keyField)} style={style}>
                             {fields.map(f => {
                                 return <TableCell key={row[keyField] + f} style={style}>
                                     {getCellValue(renderers, row, f)}
