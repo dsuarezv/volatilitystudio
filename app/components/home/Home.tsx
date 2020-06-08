@@ -12,7 +12,8 @@ import IconButton from '@material-ui/core/IconButton';
 import Badge from '@material-ui/core/Badge';
 import Container from '@material-ui/core/Container';
 import NotificationsIcon from '@material-ui/icons/Notifications';
-import BackIcon from '@material-ui/icons/ArrowLeft';
+import BackIcon from '@material-ui/icons/NavigateBefore';
+import MenuIcon from '@material-ui/icons/Reorder';
 
 import DashboardRoutes from '../dashboard/DashboardRoutes';
 
@@ -91,15 +92,14 @@ const useStyles = makeStyles((theme) => ({
 
 export default withRouter(function Home(p) {
     const classes = useStyles();
-    //const isBackVisible = p.match.path !== '/';
-    const isBackVisible = true;
+    const isBackVisible = p.location.pathname != '/';
 
     return (
       <div className={classes.root}>
         <CssBaseline />
         <AppBar position="absolute" className={clsx(classes.appBar)}>
           <Toolbar className={classes.toolbar}>
-            {isBackVisible ? <IconButton onClick={() => { p.history.goBack(); }}><BackIcon /></IconButton> : null}
+            {isBackVisible ? <IconButton onClick={() => { p.history.goBack(); }}><BackIcon /></IconButton> : <MenuIcon style={{ marginRight: '20px'}}/>}
             <Typography component="h1" variant="h6" color="inherit" noWrap className={classes.title}>
               Volatility Studio
             </Typography>
