@@ -15,7 +15,7 @@ export default observer(function Services() {
 
     return (
         <div>
-            <h1>ProcessList</h1>
+            <h1>Services</h1>
             <DataTable 
                 data={store.all} 
                 fields={['Order', 'Pid', 'Offset', 'Name', 'Display', 'State', 'Type', 'Start', 'Binary']} 

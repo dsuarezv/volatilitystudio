@@ -113,7 +113,7 @@ export default withRouter(function Home(p) {
 
         <main className={classes.content}>
           <div className={classes.appBarSpacer} />
-          <Container maxWidth="lg" className={classes.container}>
+          <Container className={classes.container}>
             <DashboardRoutes />
           </Container>
         </main>
