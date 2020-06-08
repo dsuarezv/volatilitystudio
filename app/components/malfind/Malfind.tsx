@@ -3,6 +3,7 @@ import { observer } from 'mobx-react';
 import { CircularProgress } from '@material-ui/core';
 import { useStore } from '../../store/Store';
 import DataTable from '../common/DataTable';
+import { renderHex, renderLink } from '../common/CellRenderers';
 
 export default observer(function Malfind() {
     const store = useStore().Malfind;
@@ -22,7 +23,11 @@ export default observer(function Malfind() {
                 fields={['Start VPN', 'End VPN', 'Size', 'PID', 'Process', 'Protection', 'CommitCharge', 'Tag']} 
                 keyField='Start VPN'
                 renderers={{
-                    'Size': (r, f) => r['End VPN'] - r['Start VPN']
+                    'Start VPN': renderHex,
+                    'End VPN': renderHex,
+                    Size: (r, f) => r['End VPN'] - r['Start VPN'],
+                    PID: (r, f) => renderLink('/processes/' + r.PID, r.PID),
+                    Process: (r, f) => renderLink('/processes/' + r.PID, r.Process),
                 }}
             />
         </div>

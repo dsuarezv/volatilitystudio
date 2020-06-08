@@ -11,6 +11,7 @@ import Strings from '../strings/Strings';
 import Files from '../files/Files';
 import Registry from '../registry/Registry';
 import Yara from '../yara/Yara';
+import ProcessDetails from '../process/ProcessDetails';
 
 export default function DashboardRoutes() {
     return (
@@ -24,6 +25,7 @@ export default function DashboardRoutes() {
             <Route path='/registry' component={Registry} />
             <Route path='/drivers' component={Drivers} />
             <Route path='/dlls' component={Dlls} />
+            <Route path='/processes/:pid' component={ProcessDetails} />
             <Route path='/processes' component={ProcessList} />
             <Route path='/' component={DashBoard} />
         </Switch>

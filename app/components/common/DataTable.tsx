@@ -8,7 +8,7 @@ interface HighlightRule {
 }
 
 interface CellRenderer {
-    (row: object, fieldName: string): string;
+    (row: object, fieldName: string, fieldValue: object): string;
 }
 
 interface CellRenderers {
@@ -31,7 +31,7 @@ function getCellValue(renderers: CellRenderers | null, row: object, fieldName: s
     if (renderers) {
         const renderer = renderers[fieldName];
         if (renderer) {
-            return (renderer(row, fieldName));
+            return (renderer(row, fieldName, row[fieldName]));
         }
     }
     
