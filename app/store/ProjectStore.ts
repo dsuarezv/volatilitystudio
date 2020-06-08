@@ -1,16 +1,20 @@
 import Store from "./Store";
 import { decorate, observable } from "mobx";
+import ExecutionStore from "./ExecutionStore";
 
-class ProjectStore {
-
-    _parent: Store;
+class ProjectStore extends ExecutionStore {
 
     settings = {
         image: process.env.MEMORYIMAGE
     }
 
     constructor(parent: Store) {
-        this._parent = parent;
+        super(parent);
+    }
+
+    async imageInfo(): Promise<void> {
+        const result = await this.execute([ 'windows.info' ]);
+        if (result) this.all = result.json;
     }
 }
 

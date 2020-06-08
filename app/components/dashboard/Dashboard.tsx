@@ -3,9 +3,9 @@ import { makeStyles } from '@material-ui/core/styles';
 import Paper from '@material-ui/core/Paper';
 import Grid from '@material-ui/core/Grid';
 import clsx from 'clsx';
-import RunTest from '../../containers/RunTest';
 import { Link as RouterLink } from 'react-router-dom';
 import Link from '@material-ui/core/Link';
+import ProjectInfo from './ProjectInfo';
 
 
 const useStyles = makeStyles((theme) => ({
@@ -26,9 +26,7 @@ export default function DashBoard() {
     return (
         <Grid container spacing={3}>
             <Grid item xs={12} md={12} lg={12}>
-              <Paper className={classes.paper}>
-                Project info
-              </Paper>
+              <ProjectInfo />
             </Grid>
             <Grid item xs={12}>
               <Paper className={classes.paper}>
