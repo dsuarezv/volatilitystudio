@@ -6,7 +6,7 @@ import ExecutionStore, { ExecutionResult } from './ExecutionStore';
 class ProcessStore extends ExecutionStore {
     
     loading = false;
-    all?: object;
+    all?: any[];
     current?: object;
     error?: object;
 

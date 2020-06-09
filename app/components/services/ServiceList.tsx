@@ -16,8 +16,8 @@ export default observer(function Services() {
 
     return (
         <div>
-            <h1>Services</h1>
             <DataTable 
+                title='Services'
                 data={store.all} 
                 fields={['Order', 'Pid', 'Offset', 'Name', 'Display', 'State', 'Type', 'Start', 'Binary']} 
                 keyField='Order'

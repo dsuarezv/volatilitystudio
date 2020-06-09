@@ -13,12 +13,13 @@ export default observer(function ProcessList() {
         if (!store.all) store.pslist();
     }, [store.all]);
 
-    if (store.loading) return <CircularProgress />
+    //if (store.loading) return <CircularProgress />
 
     return (
         <div>
-            <h1>ProcessList</h1>
             <DataTable 
+                title='Process list'
+                isLoading={store.loading}
                 data={store.all} 
                 fields={['PID', 'PPID', 'ImageFileName', 'Offset(V)', 'Threads', 'Handles', 'SessionId', 'CreateTime', 'ExitTime']} 
                 keyField='PID'
@@ -26,10 +27,10 @@ export default observer(function ProcessList() {
                     ImageFileName: (r, f) => renderLink('/processes/' + r.PID, r.ImageFileName),
                     'Offset(V)': renderHex
                 }}
-                // highlightRules={[
-                //     { match: p => p.ImageFileName === 'System', style: { fontWeight: 'bold' } }, 
+                highlightRules={[
+                     { match: p => p.ImageFileName === 'System', style: { fontWeight: 'bold' } }, 
                 //     { match: p => p.ImageFileName === 'lsass.exe', style: { backgroundColor: 'pink' } }, 
-                // ]}
+                ]}
             />
         </div>
     );

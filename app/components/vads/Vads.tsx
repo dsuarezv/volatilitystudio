@@ -20,8 +20,8 @@ export default observer(function Vads({pid}) {
 
     return (
         <div>
-            <h1>VADs</h1>
             <DataTable
+                title='VADs'
                 data={data}
                 fields={['PID', 'Process', 'Offset', 'Start VPN', 'End VPN', 'Size', 'Tag', 'Protection', 'CommitCharge', 'PrivateMemory', 'Parent', 'File']} 
                 keyField={r => r.PID + r['Start VPN']}

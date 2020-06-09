@@ -20,8 +20,8 @@ export default observer(function Dlls({pid}) {
 
     return (
         <div>
-            <h1>Dlls</h1>
             <DataTable
+                title='DLLs'
                 data={data}
                 fields={['PID', 'Process', 'Base', 'Size', 'Name', 'Path']} 
                 keyField={r => r.PID + r.Base}

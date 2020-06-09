@@ -17,8 +17,8 @@ export default observer(function Malfind() {
     
     return (
         <div>
-            <h1>Malfind</h1>
             <DataTable 
+                title='Malfind'
                 data={store.all} 
                 fields={['Start VPN', 'End VPN', 'Size', 'PID', 'Process', 'Protection', 'CommitCharge', 'Tag']} 
                 keyField='Start VPN'
