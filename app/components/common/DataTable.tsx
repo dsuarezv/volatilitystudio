@@ -1,7 +1,6 @@
 import React from 'react';
 import { observer } from 'mobx-react';
-import { isFunction } from 'util';
-import MaterialTable, { Column } from 'material-table';
+import MaterialTable from 'material-table';
 import { tableIcons } from './DataTableIcons';
 
 interface HighlightRule {
@@ -29,23 +28,6 @@ function getRowStyle(highlightRules: HighlightRule[] | null, row: object) {
     return result;
 }
 
-function getCellValue(renderers: CellRenderers | null, row: object, fieldName: string): string {
-    if (renderers) {
-        const renderer = renderers[fieldName];
-        if (renderer) {
-            return (renderer(row, fieldName, row[fieldName]));
-        }
-    }
-    
-    return row[fieldName];
-}
-
-function getRowKey(row: object, keyField: KeyHandler) {
-    if (isFunction(keyField)) return keyField(row);
-
-    return row[keyField];
-}
-
 interface PropTypes {
     title: string;
     data: Array<any>;
@@ -55,6 +37,7 @@ interface PropTypes {
     renderers: CellRenderers | null;
     isLoading: boolean;
 }
+
 
 function getColumns(fields: Array<string>, renderers: CellRenderers | null): any {
     return fields.map(f => {
@@ -68,7 +51,6 @@ function getColumns(fields: Array<string>, renderers: CellRenderers | null): any
         }
     });
 }
-
 
 export default observer(function DataTable({ title, data, fields, keyField, highlightRules, renderers, isLoading}: PropTypes) {
     if (!data || data.length === 0) return null;
@@ -97,34 +79,4 @@ export default observer(function DataTable({ title, data, fields, keyField, high
                 rowStyle={row => getRowStyle(highlightRules, row)}
             />
     )
-
-
-    // return (
-    //     <Table size='small'>
-    //         <TableHead>
-    //             <TableRow>
-    //                 {fields.map(f => {
-    //                     return (
-    //                         <TableCell key={f}>{f}</TableCell>
-    //                     );
-    //                 })}
-    //             </TableRow>
-    //         </TableHead>
-    //         <TableBody>
-    //             {data.map(row => {
-    //                 const style = getRowStyle(highlightRules, row);
-
-    //                 return (
-    //                     <TableRow key={getRowKey(row, keyField)} style={style}>
-    //                         {fields.map(f => {
-    //                             return <TableCell key={row[keyField] + f} style={style}>
-    //                                 {getCellValue(renderers, row, f)}
-    //                             </TableCell>
-    //                         })}
-    //                     </TableRow>
-    //                 )
-    //             })}
-    //         </TableBody>
-    //     </Table>
-    // );
 })

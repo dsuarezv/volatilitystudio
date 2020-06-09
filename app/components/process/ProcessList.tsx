@@ -13,13 +13,12 @@ export default observer(function ProcessList() {
         if (!store.all) store.pslist();
     }, [store.all]);
 
-    //if (store.loading) return <CircularProgress />
+    if (store.loading) return <CircularProgress />
 
     return (
         <div>
             <DataTable 
                 title='Process list'
-                isLoading={store.loading}
                 data={store.all} 
                 fields={['PID', 'PPID', 'ImageFileName', 'Offset(V)', 'Threads', 'Handles', 'SessionId', 'CreateTime', 'ExitTime']} 
                 keyField='PID'

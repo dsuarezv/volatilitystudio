@@ -8,7 +8,6 @@ import DashboardErrorBoundary from './DashboardErrorBoundary';
 import { Card, CardActionArea, CardMedia, CardContent, Typography } from '@material-ui/core';
 import FastfoodIcon from '@material-ui/icons/Fastfood';
 
-
 function DashBox({ to, name }) {
 	return (
 		<Grid item xs={12} md={4} lg={4}>
@@ -31,8 +30,6 @@ function DashBox({ to, name }) {
 }
 
 export default function DashBoard() {
-
-    console.log("ARGS", require('electron').remote.process.argv);
 
 	return (
 		<Grid container spacing={3}>
