@@ -5,6 +5,7 @@ import ConfigStore from './ConfigStore';
 import ServicesStore from './ServicesStore';
 import MalfindStore from './MalfindStore';
 import DllsStore from './DllsStore';
+import VadsStore from './VadsStore';
 
 class Store {
     Config = new ConfigStore(this);
@@ -13,6 +14,7 @@ class Store {
     Services = new ServicesStore(this);
     Malfind = new MalfindStore(this);
     Dlls = new DllsStore(this);
+    Vads = new VadsStore(this);
 }
 
 const storeContext = React.createContext(new Store());
