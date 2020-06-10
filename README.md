@@ -22,7 +22,13 @@ Try your installation with
     cd volatility3       (this is your VOLATILITYPATH value)
     python vol.py -h
 
-You should get a list of supported options and commands from volatility. Please refer to [the volatility project page on GitHub](https://github.com/volatilityfoundation/volatility3) for details of the installation.
+You should get a list of supported options and commands from volatility. Now, to do something useful, you'll need to install the symbols. Please refer to [the volatility project page on GitHub](https://github.com/volatilityfoundation/volatility3) for details of the installation. To get the windows symbols, [download and unpack this](https://downloads.volatilityfoundation.org/volatility3/symbols/windows.zip) in the volatility\symbols directory.
+
+Test your image with:
+
+    python vol.py -f memoryimage.bin windows.info
+
+You should get some details of the image printed.
 
 ### Volatility Studio
 
